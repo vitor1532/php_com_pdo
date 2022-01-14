@@ -28,6 +28,24 @@
 		//0
 		echo $retorno;
 
+		//INSERT QUERY
+		/*$query = '
+			INSERT INTO tb_usuarios(
+				nome, email, senha
+			) values (
+				"Vitor Martins de Almeida", "vitor@teste.com.br", "123456789"
+			)
+		';*/
+		//DELETE QUERY
+		$query = '
+			DELETE FROM tb_usuarios
+		';
+
+		$retorno = $conexao->exec($query);
+
+		echo '<br>';
+		echo $retorno;
+
 	} catch(PDOException $e) {
 		//recuperar CODE e MESSAGE
 		//CODE
