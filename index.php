@@ -15,17 +15,18 @@
 		$conexao = new PDO($dsn, $usuario, $senha);
 
 		$query = '
-			create table if not exists tb_usuarios(
-				id int not null primay key auto_increment,
-				nome varchar(50) not null,
-				email varchar(100) not null,
-				senha varchar(32) not null
+			CREATE TABLE if not exists tb_usuarios(
+				id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+				nome varchar(50) NOT NULL,
+				email varchar(100) NOT NULL,
+				senha varchar(32) NOT NULL
 			)
 		';
 		//CRUD - C(create), R(read), U(update), D(delete)
 		//retorna a quantidade de linhas modificadas, criadas ou modificadas no bd, resultando geralmente em 0
-		$conexao->exec($query);
+		$retorno = $conexao->exec($query);
 		//0
+		echo $retorno;
 
 	} catch(PDOException $e) {
 		//recuperar CODE e MESSAGE
