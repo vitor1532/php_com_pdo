@@ -15,7 +15,7 @@
 		$conexao = new PDO($dsn, $usuario, $senha);
 		
 		$query = '
-			SELECT * FROM tb_usuarios
+			SELECT * FROM tb_usuarios WHERE id = 7
 		';
 
 		$stmt = $conexao->query($query);
@@ -24,12 +24,14 @@
 		print_r($stmt);
 		echo '</pre>';
 		*/
-		$lista = $stmt->fetchAll();
+		//FETCH_ASSOC(apenas itens associativos) OR FETCH_NUM(apenas itens numéricos) OR FETCH_BOTH(para os dois)
+		//FETCH_OBJ transforma em um array de objetos
+		$lista = $stmt->fetch(PDO::FETCH_OBJ);
 		echo '<pre>';
 		print_r($lista);
 		echo '</pre>';
 
-		echo $lista[2]['email'];
+		echo $lista->nome;
 
 	} catch(PDOException $e) {
 		//recuperar CODE e MESSAGE
