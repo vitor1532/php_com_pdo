@@ -13,38 +13,23 @@
 
 	try {
 		$conexao = new PDO($dsn, $usuario, $senha);
-
+		
 		$query = '
-			CREATE TABLE if not exists tb_usuarios(
-				id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
-				nome varchar(50) NOT NULL,
-				email varchar(100) NOT NULL,
-				senha varchar(32) NOT NULL
-			)
-		';
-		//CRUD - C(create), R(read), U(update), D(delete)
-		//retorna a quantidade de linhas modificadas, criadas ou modificadas no bd, resultando geralmente em 0
-		$retorno = $conexao->exec($query);
-		//0
-		echo $retorno;
-
-		//INSERT QUERY
-		/*$query = '
-			INSERT INTO tb_usuarios(
-				nome, email, senha
-			) values (
-				"Vitor Martins de Almeida", "vitor@teste.com.br", "123456789"
-			)
-		';*/
-		//DELETE QUERY
-		$query = '
-			DELETE FROM tb_usuarios
+			SELECT * FROM tb_usuarios
 		';
 
-		$retorno = $conexao->exec($query);
+		$stmt = $conexao->query($query);
+		/*
+		echo '<pre>';
+		print_r($stmt);
+		echo '</pre>';
+		*/
+		$lista = $stmt->fetchAll();
+		echo '<pre>';
+		print_r($lista);
+		echo '</pre>';
 
-		echo '<br>';
-		echo $retorno;
+		echo $lista[2]['email'];
 
 	} catch(PDOException $e) {
 		//recuperar CODE e MESSAGE
